@@ -1,4 +1,4 @@
-name: Update APT repo from new Ethrex release
+name: Publish APT repo from Ethrex release
 
 on:
   repository_dispatch:
@@ -12,6 +12,10 @@ on:
 
 permissions:
   contents: write
+
+concurrency:
+  group: apt-publish-${{ github.ref }}
+  cancel-in-progress: false
 
 env:
   SUITE: stable
@@ -32,7 +36,6 @@ jobs:
         env:
           INPUT_TAG: ${{ github.event.inputs.tag }}
           DISPATCH_TAG: ${{ github.event.client_payload.tag }}
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           set -euo pipefail
           if [[ -n "${DISPATCH_TAG}" ]]; then
@@ -45,13 +48,14 @@ jobs:
           VERSION="${TAG#v}"
           echo "TAG=$TAG" >> "$GITHUB_OUTPUT"
           echo "VERSION=$VERSION" >> "$GITHUB_OUTPUT"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Checkout gh-pages (for skip check)
         uses: actions/checkout@v4
         with:
           ref: ${{ env.PAGES_BRANCH }}
           path: ghpages
-          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Check if version already in pool/
         id: poolcheck
@@ -64,11 +68,10 @@ jobs:
             echo "SKIP=false" >> "$GITHUB_OUTPUT"
           fi
 
-  build-and-publish:
+  build:
     needs: resolve-tag
     if: needs.resolve-tag.outputs.SKIP != 'true'
     runs-on: ubuntu-latest
-
     strategy:
       fail-fast: false
       matrix:
@@ -89,18 +92,11 @@ jobs:
             arch: arm64
             pkgname: ethrex-gpu
             asset: ethrex-linux_aarch64-gpu
-
     steps:
-      - name: Checkout gh-pages
-        uses: actions/checkout@v4
-        with:
-          ref: ${{ env.PAGES_BRANCH }}
-          path: pages
-
-      - name: Tooling
+      - name: Install packaging tools
         run: |
           sudo apt-get update
-          sudo apt-get install -y dpkg-dev apt-utils gnupg xz-utils curl
+          sudo apt-get install -y dpkg-dev apt-utils xz-utils curl
 
       - name: Download ethrex binary
         run: |
@@ -118,36 +114,57 @@ jobs:
           ARCH="${{ matrix.arch }}"
           mkdir -p build/${ARCH}/DEBIAN build/${ARCH}/usr/bin
           install -m 0755 work/ethrex build/${ARCH}/usr/bin/ethrex
-
           cat > build/${ARCH}/DEBIAN/control <<EOF
           Package: ${PKG}
           Version: ${VERSION}
           Section: utils
           Priority: optional
           Architecture: ${ARCH}
-          Maintainer: LambdaClass <dev@lambdaclass.com>
+          Maintainer: LambdaClass <ethrex+infra@lambdaclass.com>
           Description: Ethrex — Ethereum execution client (${PKG})
           EOF
-
           dpkg-deb --build --root-owner-group build/${ARCH}
           mv build/${ARCH}.deb "${PKG}_${VERSION}_${ARCH}.deb"
 
-      - name: Stage into pool/
+      - name: Upload .deb artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: deb-${{ matrix.id }}
+          path: |
+            *.deb
+          retention-days: 7
+
+  publish:
+    needs: [resolve-tag, build]
+    if: needs.resolve-tag.outputs.SKIP != 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout gh-pages (working tree)
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ env.PAGES_BRANCH }}
+          path: pages
+
+      - name: Download all .deb artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: dl
+
+      - name: Move .debs into pool/
         run: |
           mkdir -p pages/pool/main/e/ethrex
-          mv *.deb pages/pool/main/e/ethrex/
+          find dl -type f -name "*.deb" -print -exec mv {} pages/pool/main/e/ethrex/ \;
 
-      - name: Regenerate Packages + Release
+      - name: Regenerate Packages and Release
         run: |
+          sudo apt-get update
+          sudo apt-get install -y dpkg-dev apt-utils gnupg xz-utils
           pushd pages
           mkdir -p dists/${SUITE}/main/binary-amd64 dists/${SUITE}/main/binary-arm64
-
           dpkg-scanpackages --arch amd64 pool | tee dists/${SUITE}/main/binary-amd64/Packages | gzip -9 > dists/${SUITE}/main/binary-amd64/Packages.gz
           xz -c9 dists/${SUITE}/main/binary-amd64/Packages > dists/${SUITE}/main/binary-amd64/Packages.xz
-
           dpkg-scanpackages --arch arm64 pool | tee dists/${SUITE}/main/binary-arm64/Packages | gzip -9 > dists/${SUITE}/main/binary-arm64/Packages.gz
           xz -c9 dists/${SUITE}/main/binary-arm64/Packages > dists/${SUITE}/main/binary-arm64/Packages.xz
-
           cat > release.conf <<EOF
           APT::FTPArchive::Release::Origin "Ethrex";
           APT::FTPArchive::Release::Label "Ethrex";
@@ -157,11 +174,10 @@ jobs:
           APT::FTPArchive::Release::Components "${COMPONENT}";
           APT::FTPArchive::Release::Description "Ethrex APT repository";
           EOF
-
           apt-ftparchive -c release.conf release dists/${SUITE} > dists/${SUITE}/Release
           popd
 
-      - name: Import GPG key
+      - name: Import signing key
         env:
           APT_GPG_PRIVATE_KEY: ${{ secrets.APT_GPG_PRIVATE_KEY }}
         run: |
@@ -175,17 +191,18 @@ jobs:
           gpg --batch --yes --local-user "$GPG_KEYID" \
               --pinentry-mode loopback --passphrase "${{ secrets.APT_GPG_PASSPHRASE }}" \
               --clearsign -o dists/${SUITE}/InRelease dists/${SUITE}/Release
-
           gpg --batch --yes --local-user "$GPG_KEYID" \
               --pinentry-mode loopback --passphrase "${{ secrets.APT_GPG_PASSPHRASE }}" \
               -abs -o dists/${SUITE}/Release.gpg dists/${SUITE}/Release
           popd
 
-      - name: Commit + push
+      - name: Commit & push (single publish)
         run: |
           cd pages
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add -A
-          git commit -m "publish ${{ needs.resolve-tag.outputs.TAG }}" || echo "no changes"
+          git commit -m "apt: publish ${{ needs.resolve-tag.outputs.TAG }}" || echo "no changes"
+          git pull --rebase origin ${{ env.PAGES_BRANCH }} || true
           git push origin ${{ env.PAGES_BRANCH }}
+
