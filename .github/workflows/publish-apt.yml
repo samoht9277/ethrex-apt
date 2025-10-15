@@ -205,12 +205,28 @@ jobs:
               -abs -o dists/${SUITE}/Release.gpg dists/${SUITE}/Release
           popd
 
-      - name: Commit & push (single publish)
+      - name: Configure SSH commit signing (id_ed25519)
+        env:
+          SSH_PRIV: ${{ secrets.SSH_BOT_COMMIT_KEY }}
+        run: |
+          mkdir -p ~/.ssh
+          echo "$SSH_PRIV" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+
+          ssh-keygen -yf ~/.ssh/id_ed25519 > ~/.ssh/id_ed25519.pub
+          echo "ethrex+infra@lambdaclass.com $(cat ~/.ssh/id_ed25519.pub)" > ~/.ssh/allowed_signers
+
+          git config --global gpg.format ssh
+          git config --global user.signingkey ~/.ssh/id_ed25519
+          git config --global gpg.ssh.allowedSignersFile ~/.ssh/allowed_signers
+          git config --global commit.gpgsign true
+          git config --global user.name "Ethrex Infra Bot"
+          git config --global user.email "ethrex+infra@lambdaclass.com"
+
+      - name: Commit & push
         run: |
           cd pages
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
           git add -A
-          git commit -m "apt: publish ${{ needs.resolve-tag.outputs.TAG }}" || echo "no changes"
+          git commit -S -m "apt: publish ${{ needs.resolve-tag.outputs.TAG }}" || echo "no changes"
           git pull --rebase origin ${{ env.PAGES_BRANCH }} || true
           git push origin ${{ env.PAGES_BRANCH }}
