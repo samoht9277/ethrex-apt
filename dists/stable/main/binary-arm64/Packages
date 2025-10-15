@@ -1,0 +1,13 @@
+Package: ethrex
+Version: 3.0.0
+Architecture: arm64
+Maintainer: LambdaClass <dev@lambdaclass.com>
+Filename: pool/main/e/ethrex/ethrex_3.0.0_arm64.deb
+Size: 30790546
+MD5sum: c3e34af3005f1dbd666da6e4bf7446b4
+SHA1: 3fb19064da26401d9e4b93d4a5f5ade8394d4b8e
+SHA256: 52a52d352f8eeec777ee3dd944a194aff24eaa802976a1a20c923e0e3816aef0
+Section: utils
+Priority: optional
+Description: Ethrex — Ethereum execution client (ethrex)
+
