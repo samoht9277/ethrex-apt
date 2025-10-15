@@ -1,40 +1,47 @@
 -----BEGIN PGP SIGNED MESSAGE-----
 Hash: SHA512
 
-Date: Wed, 15 Oct 2025 18:44:52 +0000
+Architectures: amd64 arm64
+Codename: stable
+Components: main
+Date: Wed, 15 Oct 2025 19:24:22 +0000
+Description: Ethrex APT repository
+Label: Ethrex
+Origin: Ethrex
+Suite: stable
 MD5Sum:
- 862327a01e8b910c8e523f3a68d38d53               38 Release
+ 938183967cddb2b7e84e118d55d7846a              177 Release
  baafdb82fd6a578faeb143b06a1d4c2f              419 main/binary-amd64/Packages
  31ce0e60bfad86e6a924e9567ca80af0              326 main/binary-amd64/Packages.gz
  a48975a33e650079e91ef6b28dc7439f              404 main/binary-amd64/Packages.xz
 SHA1:
- 506119d5a40ad5d5dde4e317b671b462c4692bc7               38 Release
+ 0eb6d32aa07f86e74dc1257e89f2d608c1a492d5              177 Release
  acabf76b9295bf4136d2120b8ecb8bc1624515e9              419 main/binary-amd64/Packages
  e511e0dbad289f22d77efbeadc85964cba74e950              326 main/binary-amd64/Packages.gz
  42fbcd6bc62e1419877c79504f0cd1e2bb3cd863              404 main/binary-amd64/Packages.xz
 SHA256:
- c6e51d7c7deb64abce317a81d9efeabf6991ddf9518f19904a5e9c0926af32ef               38 Release
+ 7a0aa2a5aafaca366439e0270f171d6b98d3be2d2496781b26c6720f6c956782              177 Release
  2dfbb54fa20efa4dbedca069346e711748c5edfee88ad4fe1ced0939ef2a884a              419 main/binary-amd64/Packages
  047391ae3fadf72067ae30513e3a19eabdde37214665f97eb612e833457b8019              326 main/binary-amd64/Packages.gz
  6de65bd72e446d5a0e1902de90eb67eaf3e79283156d035febfe22dc414843d9              404 main/binary-amd64/Packages.xz
 SHA512:
- d7095e07dcefbd07960aced819d7910f98dedaa547c6e51fc0b9951c55e781f9b22160db38412df122642673b65bc0c7c60f14cc967bc515234f70132bcc7ea8               38 Release
+ 213ed2e611b717c909f9264ad8a6f5a2b695dc969a8436aa217c3597be535f764222f0bb83fe8475ce8dae36495bded7495c19f743d066e290ef880c57c16689              177 Release
  610c706a46713ad61d03a1f659c92d563e636b1b7446c276c11a2cb90a71f4c1f1e980e71452614baf400fdf84e640bb94670743c0fc6c63cee3545a5704030f              419 main/binary-amd64/Packages
  8170c26a15b4a9df6ef15909a2b0aecbe507e9d6014fa04dbf1ec96216dab368e9077e5b60aa01f611deeb8d626ae16f2958161bcdc00137039aa1ac480570e3              326 main/binary-amd64/Packages.gz
  29222191eca8be598c5caecb55a1597435d06e98ab29a071ca17c37b364faee6b080e517eda0a6e4cdb98756162a1745dce37ad5853176d661c306662832f679              404 main/binary-amd64/Packages.xz
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAEBCgAdFiEEcR0u1Mo5rA9qGcU4aC+oPplhKgMFAmjv7AkACgkQaC+oPplh
-KgPk/Q/+NGOn5EmFm9SHtgIltj12uQIjgPmebjkTNl7rFFmZwYakmb7j11+mossD
-/VhSqsk6kFOjayDBhxkmQsRaKBTDnIe1n2qlUN2aNDGGnnkYD62shmdEVgUgS/4t
-RjdOmp6ieIgU/tiOkOqYjKxJ5XuUyoXxCiOzrh94YIDhYk0uxWFknRnqzoc3iex3
-ZUP5gKhbJVPxAZa49op3a2s53+fZHGzAgJTQu4xDWAgsy3UItjDJRcJeKKfI0+Om
-Aa+JsReIzUUojvZlLz2ZKrkyCzwDIaBaor7NnvIcLmGqfxPHUY1/TkjTN8ed+wx6
-oZ4viLrRRf8t7BEYrNVDf2eyTsYbw2y+rzGE9WGFZIEgadZp+DZUYcTQLpjMljjT
-s8D6s9k0bofOadBTaqMe8oJt/e9CBAt/Uj0DmcxspbMCKfSXfSubbUeEU/cPXXh1
-Ub9+p3SuN/XCblBZdqIn/8EG7ZryntKGrV/0USnW8c/zU+YXvRdYlpvmohCmBz0c
-QMN+OxeKqGDgReEs4icWOIKBt8XfUK4R87iPHZFWsWEpwbmC1nzm/aOUyq/M4qY2
-FfiMn1MFiVCXeovWbjUDakp/0wkzCQWR9botJmJtcV1EG49Xzxzixk2tskQFTRWj
-7ouMRkEhmsSdMTFRkb7OF37YFVrIS1lQesS4w8BfSwi2jknD5z0=
-=eMZb
+iQIzBAEBCgAdFiEEcR0u1Mo5rA9qGcU4aC+oPplhKgMFAmjv9TUACgkQaC+oPplh
+KgP58g/+K9L+fxpX/Z8HutIuVdM+6dAwUz2qtNTnKXK8ERxBVW9zWoXtygoKkHg2
+RFWaH1zwNoV5KImfQ+7qqp8fIxFi6FBhCJk3rSlP0A5yxeH9qe4RD5IZkW+oyvYg
++oQT/vwQgwuZNppbWsNXetH/n/s51He8kQZFwZ4j6y+0pvsBh5fvFVW5dg3+N80z
+Ct7loV4LRHKjDdKlcPCDlYBaIyzMpW6YAbW6M8rX4Tb//HpI/rofDNN2AF9SyFjn
+0lNA7jpbFCp0sagZS5NwyumKx/apyRSvcvKcOiKMUGDNSeyQh9lBflQQ8TO4kLLV
+Zeg3WsDAxUPTi4uIYR4hlTemhekE7j/anJ//aChW56m+sgF/fCHXgYNVRK8cpF5+
++jOIfpOWHg9DYRpFdtL6GuLYYUTQVZNX0VERvcGTbuf9XgsvQAIWlLZuwUnvAslg
+DUD9ke6vHhu56MZ9euVUDsscu0ADRduGrQW2z4x7j/PYoKoCGLhsUCgJqRAgxRFz
+8Guc3GMrR74OctpWp/HT5iSdXnegBmI6n+ju8sld9QUbz1pBKotDONPRo24x5mWm
+qRq8crRteJkjpJpl1Tn4VuT5jEA7s+mfajb0QYemT2F2kkPedBArU5Segw2SL37Z
+NrjmgT7U6mSXHQ0GMLu7qVhe3o9shjk2Pj0ZsqOhK3z44zDX2rc=
+=ryDT
 -----END PGP SIGNATURE-----
