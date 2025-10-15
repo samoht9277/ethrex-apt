@@ -17,9 +17,8 @@ All binaries are signed and versioned exactly as on the [Ethrex GitHub Releases]
 
 ## Supported Platforms
 
-- Debian 11 (Bullseye) and newer  
-- Ubuntu 20.04 (Jammy) and newer  
-- Any derivative that uses `apt` (Pop!_OS, Mint, etc.)
+- Debian 13 (Trixie) and newer  
+- Ubuntu 24.04 (Noble Numbat) and newer  
 
 ---
 
