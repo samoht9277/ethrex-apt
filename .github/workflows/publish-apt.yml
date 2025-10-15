@@ -16,7 +16,7 @@ permissions:
 env:
   SUITE: stable
   COMPONENT: main
-  PAGES_BRANCH: gh-pages
+  PAGES_BRANCH: main
   ETHREX_REPO: lambdaclass/ethrex
 
 jobs:
