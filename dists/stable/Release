@@ -1,13 +1,13 @@
 Architectures: amd64 arm64
 Codename: stable
 Components: main
-Date: Thu, 16 Oct 2025 21:05:01 +0000
+Date: Thu, 16 Oct 2025 21:13:00 +0000
 Description: Ethrex APT repository
 Label: Ethrex
 Origin: Ethrex
 Suite: stable
 MD5Sum:
- 0c08948155afa1443bdd86c3ff308bdb              177 Release
+ 616aca023acae6131c757b3fd72d18fe              177 Release
  6968e2c5e7bd82d19259bae1f0b7a5a8              869 main/binary-amd64/Packages
  2b5ec961b17bdb651864ddcea8698ccf              456 main/binary-amd64/Packages.gz
  7d83dbb28aba648f2a6189c1fa0b73da              524 main/binary-amd64/Packages.xz
@@ -15,7 +15,7 @@ MD5Sum:
  c59b839280f450992e3b530fc15075e1              458 main/binary-arm64/Packages.gz
  69f14c7f84c43600dae6c02f59cfe663              524 main/binary-arm64/Packages.xz
 SHA1:
- e0360bccb6a96d68e1246d276a775dad5039a81f              177 Release
+ afe63bfbf7204dc51a861cc27dcb6043690cc5ce              177 Release
  646cbef1c3324dd44c3d66c7efde7195864da719              869 main/binary-amd64/Packages
  2544862f3effbcf2c57d0298247e061e293d183a              456 main/binary-amd64/Packages.gz
  28e0e9f5436d62c03e4c5d9da978d85a8ef16247              524 main/binary-amd64/Packages.xz
@@ -23,7 +23,7 @@ SHA1:
  5bc79c2e117d9a01a4fd79abb1b2f1630dfdd612              458 main/binary-arm64/Packages.gz
  9ff12bfb148a0fe9aaff07c262e46e8e03e761c8              524 main/binary-arm64/Packages.xz
 SHA256:
- fef70a6e4082f09c0f970fd74e79f7e2fc04e07a7834ff94f40e7767f52d174d              177 Release
+ 227b160f1c2eb39b0672ccd291531d87e4f2c6129878e8e4195d3e02d1b06ac5              177 Release
  def8a4308e2350d71037449acea905d2572dfd8f656005aaf7886a1a1cd51483              869 main/binary-amd64/Packages
  2258ed179dce269335f1ea1c70d2bdb050f8fc60ac1c4b1af5822516e7612974              456 main/binary-amd64/Packages.gz
  59bb1ed6e47c7e66ee452a6dbcf9737a54ab26bd2f0f77347e6b38a24ca3529e              524 main/binary-amd64/Packages.xz
@@ -31,7 +31,7 @@ SHA256:
  46bf9542e5c611fde5bb6c51ec61f0773b5f96bb8f57008df449621cd941340e              458 main/binary-arm64/Packages.gz
  eb0e4acf756e6614eefa4e909a8ae6e75d75f24bd9ab1b9d6c6e02b681e4992d              524 main/binary-arm64/Packages.xz
 SHA512:
- f3b33d088fb8f042167e3d7c32b784f1d145656175288f15f224b32fc18777060e3ad7eb730fc56132010c06d1bbd9fab681bcfd1f5cf98feecd5def10b842c4              177 Release
+ 6755e36675b18a7c5178b77281c902cef3036f7604df6931535d68a130be4920b7e3f1fcf66ff4848bf02a4bc5cc4375b9ea7ededa75aee19b62dc9c0d9aa4a5              177 Release
  81f0d05774e66b40ecbc09d73db4971d43d57cc7f038f34f0867a74d39c7a108e2788c08885bebb67cfcd1c2b0b901638d7b348dee0723a956aa527cbed6032b              869 main/binary-amd64/Packages
  d8d30e4497aefedf883d823a61412f82776722e574ff67535f2d9ad4d9d89545c26e8b3258e1883af906779d88d4694d1755f7d7af44d16f2b85fc235ac1c176              456 main/binary-amd64/Packages.gz
  d8684a50a3bfc3884e6ad847d9d1ba2872fedb0ea22eb4b9350ecb837a61519452d25df520dd9b8290a5b1c31012d4626084da7ef19447c8d36bcd51f5136b4d              524 main/binary-amd64/Packages.xz
