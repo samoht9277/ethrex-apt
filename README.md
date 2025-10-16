@@ -49,6 +49,6 @@ sudo apt install ethrex-gpu
 ```
 
 ## GPG Info
-Key Owner	Ethrex Infra <ethrex+infra@lambdaclass.com>
-
-Fingerprint	see key on https://apt.ethrex.xyz/KEY.asc
+| Key Owner                                    | Fingerprint                                |
+|----------------------------------------------|--------------------------------------------|
+| Ethrex Infra <infra+ethrex@lambdaclass.com>  | See key on https://apt.ethrex.xyz/KEY.asc  |
