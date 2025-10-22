@@ -67,7 +67,9 @@ jobs:
           authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
 
       - name: Build with Nix
-        run: nix build
+        run: |
+          ls
+           nix build
 
       - name: Push build to Cachix
         run: cachix push ethrex ./result
