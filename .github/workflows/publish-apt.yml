@@ -193,10 +193,8 @@ jobs:
           popd
 
       - name: Import signing key
-        env:
-          APT_GPG_PRIVATE_KEY: ${{ secrets.APT_GPG_PRIVATE_KEY }}
         run: |
-          echo "$APT_GPG_PRIVATE_KEY" | gpg --batch --import
+          echo "$APT_SIGNING_KEY" | gpg --batch --import
           KEYID=$(gpg --list-secret-keys --with-colons | awk -F: '/^sec:/ {print $5; exit}')
           echo "GPG_KEYID=$KEYID" >> $GITHUB_ENV
 
@@ -204,16 +202,14 @@ jobs:
         run: |
           pushd pages
           gpg --batch --yes --local-user "$GPG_KEYID" \
-              --pinentry-mode loopback --passphrase "${{ secrets.APT_GPG_PASSPHRASE }}" \
+              --pinentry-mode loopback --passphrase "${{ secrets.APT_SIGNING_PASSPHRASE }}" \
               --clearsign -o dists/${SUITE}/InRelease dists/${SUITE}/Release
           gpg --batch --yes --local-user "$GPG_KEYID" \
-              --pinentry-mode loopback --passphrase "${{ secrets.APT_GPG_PASSPHRASE }}" \
+              --pinentry-mode loopback --passphrase "${{ secrets.APT_SIGNING_PASSPHRASE }}" \
               -abs -o dists/${SUITE}/Release.gpg dists/${SUITE}/Release
           popd
 
       - name: Configure SSH commit signing (id_ed25519)
-        env:
-          SSH_PRIV: ${{ secrets.SSH_BOT_COMMIT_KEY }}
         run: |
           mkdir -p ~/.ssh
           echo "$SSH_PRIV" > ~/.ssh/id_ed25519
