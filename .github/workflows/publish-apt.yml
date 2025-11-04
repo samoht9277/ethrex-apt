@@ -194,7 +194,7 @@ jobs:
 
       - name: Import signing key
         run: |
-          echo "$APT_SIGNING_KEY" | gpg --batch --import
+          echo "${{ secrets.APT_SIGNING_KEY }}" | gpg --batch --import
           KEYID=$(gpg --list-secret-keys --with-colons | awk -F: '/^sec:/ {print $5; exit}')
           echo "GPG_KEYID=$KEYID" >> $GITHUB_ENV
 
