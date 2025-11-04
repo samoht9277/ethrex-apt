@@ -10,7 +10,7 @@ on:
         default: ""
 
 permissions:
-  contents: read
+  contents: write
   actions: write
 
 # Prevent overlapping pushes to gh-pages
