@@ -2,6 +2,9 @@ name: Publish APT repo from Ethrex release
 
 on:
   workflow_call:
+    secrets:
+      APT_SIGNING_KEY: { required: true }
+      APT_SIGNING_PASSPHRASE: { required: true }
   workflow_dispatch:
     inputs:
       tag:
