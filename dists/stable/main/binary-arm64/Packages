@@ -1,25 +1,25 @@
 Package: ethrex
-Version: 5.0.0
+Version: 6.0.0
 Architecture: arm64
 Maintainer: LambdaClass <ethrex+infra@lambdaclass.com>
-Filename: pool/main/e/ethrex/ethrex_5.0.0_arm64.deb
-Size: 30752034
-MD5sum: 6fc9b0414a3608a06602d6a3fa2dceed
-SHA1: cf6cb43bdb3657e88e03e5d8d7a22d5e5f6b4a0a
-SHA256: 6613e967f02ef31049c59cfa7364b3890da6ead303081f104255cda4e1d06648
+Filename: pool/main/e/ethrex/ethrex_6.0.0_arm64.deb
+Size: 30960532
+MD5sum: 00dcca103babcf4692d5d9f6d617ecbf
+SHA1: de5dfad49e8bfa70e5349f18857b528131bc988f
+SHA256: 19a948569c0cb6deeb671353054d5fe017cbf1da8cf555be263010db82429dd9
 Section: utils
 Priority: optional
 Description: Ethrex — Ethereum execution client (ethrex)
 
 Package: ethrex-gpu
-Version: 5.0.0
+Version: 6.0.0
 Architecture: arm64
 Maintainer: LambdaClass <ethrex+infra@lambdaclass.com>
-Filename: pool/main/e/ethrex/ethrex-gpu_5.0.0_arm64.deb
-Size: 29212222
-MD5sum: 5ef78c419c162e884da50c016b9387c1
-SHA1: 09183e119e69dcf8fe8140e99a3a7341f10b796d
-SHA256: 2c70d95d0f48dae2f957fe19fc43a92ab7ed397f6961cda355146339ebd3ae1f
+Filename: pool/main/e/ethrex/ethrex-gpu_6.0.0_arm64.deb
+Size: 29414646
+MD5sum: faf3dc8df98abfba9efa01d3b3db325e
+SHA1: bfa67867f25fdfcd6f449611448db4e2cf61c77d
+SHA256: df2a9a8c80dc628489fd15dc828bd28df466d330922cdc58d08ff69c294e61a1
 Section: utils
 Priority: optional
 Description: Ethrex — Ethereum execution client (ethrex-gpu)
