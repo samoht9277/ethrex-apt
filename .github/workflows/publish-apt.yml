@@ -5,6 +5,7 @@ on:
     secrets:
       APT_SIGNING_KEY: { required: true }
       APT_SIGNING_PASSPHRASE: { required: true }
+      SSH_BOT_COMMIT_KEY: { required: true }
   workflow_dispatch:
     inputs:
       tag:
